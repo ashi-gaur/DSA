@@ -1,0 +1,60 @@
+//{ Driver Code Starts
+//Initial Template for Java
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main(String[] args) throws IOException
+	{
+	        BufferedReader br =
+            new BufferedReader(new InputStreamReader(System.in));
+        int t =
+            Integer.parseInt(br.readLine().trim()); // Inputting the testcases
+        while(t-->0)
+        {
+            int n = Integer.parseInt(br.readLine().trim());
+            int a[] = new int[n];
+            String inputLine[] = br.readLine().trim().split(" ");
+            for (int i = 0; i < n; i++) {
+                a[i] = Integer.parseInt(inputLine[i]);
+            }
+            
+            Solution obj = new Solution();
+            System.out.println(obj.maxOnes(a, n));
+            
+        }
+	}
+}
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+
+class Solution {
+
+    public static int maxOnes(int a[], int n) {
+        // Your code goes here
+        int curr_sum = 0;
+        int ov_max = 0;
+        int ct1 = 0;
+        for(int i = 0;i<n;i++){
+            if(a[i] == 0 && curr_sum>=0){
+                curr_sum += 1;
+            }else if(a[i] == 0 && curr_sum<0){
+                curr_sum = 1;
+            }
+            else if(curr_sum>=0 && a[i] == 1){
+                curr_sum -=1;
+                ct1++;
+            }else{
+                ct1++;
+                curr_sum = -1;
+            }
+            ov_max = Math.max(curr_sum,ov_max);
+        }
+        return ov_max+ct1;
+    }
+}
