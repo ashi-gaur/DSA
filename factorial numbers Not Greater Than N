@@ -1,0 +1,15 @@
+import java.util.*;
+public class Solution {
+    public static List<Long> factorialNumbers(long n) {
+        // Write Your Code Here
+        List<Long> list=new ArrayList<>();
+        return func(list,1,1,n);
+    }
+    public static List<Long> func(List<Long> list,long i,long fact,long n){
+        if(fact>n){
+            return list;
+        }
+        list.add(fact);
+        return func(list,i+1, fact*(i+1),n);
+    }
+}
